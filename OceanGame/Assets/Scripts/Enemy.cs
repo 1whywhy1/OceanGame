@@ -5,18 +5,27 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
 
-    [SerializeField] public float movement = 5f;
+    [SerializeField] private float movement = 1.0f;
+    [SerializeField] private int damage = 1;
 
-
-    // Start is called before the first frame update
-    void Start()
+    #region OnEnable
+    void OnEnable()
     {
         
     }
+    #endregion
 
-    // Update is called once per frame
+
+    #region Update
     void Update()
     {
-        transform.Translate(-Vector3.right * Time.deltaTime, Space.World);
+        // Apply constant movement to the left on X axis.
+        transform.Translate(-Vector3.right * Time.deltaTime * movement, Space.World);
+    }
+    #endregion
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        collision.transform.GetComponent<Player>().DealDamage(damage);
     }
 }

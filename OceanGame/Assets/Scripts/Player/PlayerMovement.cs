@@ -32,10 +32,7 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    private bool IsSurfaced()
-    {
-        return Physics2D.OverlapCircle(surfaceCheck.position, 0.2f, surfaceLayer);
-    }
+   
 
     public void Move(InputAction.CallbackContext context)
     {
